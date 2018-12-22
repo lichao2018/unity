@@ -67,8 +67,6 @@
     <Compile Include="Assets\Scripts\Enemy2D.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\PlayerAttack.cs" />
-    <Compile Include="Assets\Scripts\Wall.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/lichao/github/unity/rpg_2d/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
