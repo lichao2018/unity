@@ -51,7 +51,7 @@ public class Controller2D : MonoBehaviour {
             }
         }
     }
-
+    
     void BulletAttack()
     {
         Rigidbody bPrefab = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as Rigidbody;

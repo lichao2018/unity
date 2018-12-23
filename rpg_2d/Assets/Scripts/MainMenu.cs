@@ -15,7 +15,10 @@ public class MainMenu : MonoBehaviour {
 
     private void OnGUI()
     {
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), backgroundTexture);
+        if (backgroundTexture != null)
+        {
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), backgroundTexture);
+        }
         if(showGUIOutline){
             if (GUI.Button(new Rect(Screen.width * gamePlacementX1, 
                                     Screen.height * gamePlacementY1, 
