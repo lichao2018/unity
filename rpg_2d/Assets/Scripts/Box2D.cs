@@ -41,7 +41,7 @@ public class Box2D : MonoBehaviour {
         }
         if (lifted)
         {
-            transform.position = new Vector3(player.transform.position.x, 2, transform.position.z);
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1, transform.position.z);
             transform.parent = player.transform;
         }
         else
