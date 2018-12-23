@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Box2D : MonoBehaviour {
-    bool pushed = false;
+    bool lifted = false;
     public GameObject player;
 
 	// Use this for initialization
@@ -13,16 +13,43 @@ public class Box2D : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float dist = player.transform.position.x - transform.position.x;
-        if(Mathf.Abs(dist) <= 1.3 && Input.GetKey(KeyCode.LeftControl) && player.transform.position.y < 1.1)
+        //扔箱子
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            if(dist < 0)
+            lifted = false;
+        }
+        float distX = player.transform.position.x - transform.position.x;
+        if(Mathf.Abs(distX) <= 1.3 && player.transform.position.y < 1.1)
+        {
+            if (Input.GetKey(KeyCode.LeftControl))
             {
-                transform.position = new Vector3(player.transform.position.x + 1.3f, transform.position.y, transform.position.z);
+                //举箱子
+                if (Input.GetKeyDown(KeyCode.J))
+                {
+                    lifted = true;
+                }
+                //推箱子
+                if (distX < 0)
+                {
+                    transform.position = new Vector3(player.transform.position.x + 1.3f, transform.position.y, transform.position.z);
+                }
+                else
+                {
+                    transform.position = new Vector3(player.transform.position.x - 1.3f, transform.position.y, transform.position.z);
+                }
             }
-            else
+        }
+        if (lifted)
+        {
+            transform.position = new Vector3(player.transform.position.x, 2, transform.position.z);
+            transform.parent = player.transform;
+        }
+        else
+        {
+            if(transform.parent == player.transform)
             {
-                transform.position = new Vector3(player.transform.position.x - 1.3f, transform.position.y, transform.position.z);
+                transform.position = new Vector3(player.transform.position.x + 1.3f, 1, transform.position.z);
+                transform.parent = null;
             }
         }
 	}
