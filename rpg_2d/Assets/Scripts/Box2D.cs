@@ -14,7 +14,7 @@ public class Box2D : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float dist = player.transform.position.x - transform.position.x;
-        if(Mathf.Abs(dist) <= 1.3 && Input.GetKey(KeyCode.LeftControl))
+        if(Mathf.Abs(dist) <= 1.3 && Input.GetKey(KeyCode.LeftControl) && player.transform.position.y < 1.1)
         {
             if(dist < 0)
             {
