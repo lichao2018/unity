@@ -15,6 +15,7 @@ public class Controller2D : MonoBehaviour {
     float attackRate = 0.5f;
     float cooldown;
     bool lookRight = true;
+    bool climb = false;
 
     // Use this for initialization
     void Start () {
@@ -40,7 +41,16 @@ public class Controller2D : MonoBehaviour {
         if(characterController.isGrounded){
             if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.K)){
                 moveDirection.y = jumpHeight;
+                if (Input.GetKey(KeyCode.LeftControl))
+                {
+                    climb = true;
+                }
             }
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            climb = false;
         }
 
         if (Time.time >= cooldown)
@@ -57,6 +67,14 @@ public class Controller2D : MonoBehaviour {
         Rigidbody bPrefab = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as Rigidbody;
         bPrefab.GetComponent<Rigidbody>().AddForce(Vector3.right * 500 * (lookRight ? 1 : -1));
         cooldown = Time.time + attackRate;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.collider.tag == "Barrier" && climb)
+        {
+            transform.position = new Vector3(hit.transform.position.x, hit.transform.localScale.y + transform.position.y, transform.position.z);
+        }
     }
 
     public IEnumerator TakenDamage(){
