@@ -41,14 +41,14 @@ public class Controller2D : MonoBehaviour {
         if(characterController.isGrounded){
             if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.K)){
                 moveDirection.y = jumpHeight;
-                if (Input.GetKey(KeyCode.LeftControl))
+                if (Input.GetKey(KeyCode.U))
                 {
                     climb = true;
                 }
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.U))
         {
             climb = false;
         }
@@ -73,6 +73,7 @@ public class Controller2D : MonoBehaviour {
     {
         if(hit.collider.tag == "Barrier" && climb)
         {
+            print("collider climb");
             transform.position = new Vector3(hit.transform.position.x, hit.transform.localScale.y + transform.position.y, transform.position.z);
         }
     }
