@@ -29,4 +29,12 @@ public class ButtonListener : MonoBehaviour {
     public void WeaponPowerUp(){
         MenuManager.GetInstance().LvUpWeaponPower();
     }
+
+    public void SubWeaponScopeUp(){
+        MenuManager.GetInstance().LvUpSubWeaponScope();
+    }
+
+    public void SubWeaponPowerUp(){
+        MenuManager.GetInstance().LvUpSubWeaponPower();
+    }
 }
