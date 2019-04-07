@@ -5,11 +5,11 @@ using UnityEngine;
 public class SubWeaponController : MonoBehaviour {
     public GameObject bulletPrab;
     public float fireRate;
+    public bool firstBorn;
     private float nextFire;
 
 	// Use this for initialization
-	void Start () {
-		
+    void Start () {
 	}
 	
 	// Update is called once per frame
@@ -17,12 +17,17 @@ public class SubWeaponController : MonoBehaviour {
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            GameObject bullet = Instantiate(bulletPrab, transform.position, transform.rotation);
-            Vector3 bulletScale = bullet.transform.localScale;
-            bullet.transform.localScale = new Vector3(
-                bulletScale.x * MenuManager.GetInstance().subWeaponScope, 
-                bulletScale.y, 
-                bulletScale.z * MenuManager.GetInstance().subWeaponScope);
+            if (firstBorn)
+            {
+                GameObject bullet = Instantiate(bulletPrab, transform.position, transform.rotation);
+                Vector3 bulletScale = bullet.transform.localScale;
+                bullet.transform.localScale = new Vector3(
+                    bulletScale.x * MenuManager.GetInstance().subWeaponScope,
+                    bulletScale.y,
+                    bulletScale.z * MenuManager.GetInstance().subWeaponScope);
+                bullet.GetComponent<BulletController>().SetPower(MenuManager.GetInstance().subWeaponPower);
+            }
+            firstBorn = !firstBorn;
         }
     }
 }

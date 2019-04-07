@@ -33,25 +33,45 @@ public class EnemyController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Bullet"){
-            Destroy(other.gameObject);
-            Instantiate(explosionEnemy, transform.position, transform.rotation);
-            life -= other.gameObject.GetComponent<BulletController>().firePower;
-            if (life <= 0)
-            {
-                gameManager.AddCoin(score);
-                Destroy(gameObject);
-            }
-        }
         if(other.tag == "Player"){
             gameManager.GameOver();
             Instantiate(explosionPlayer, transform.position, transform.rotation);
             Destroy(other.gameObject);
             Destroy(gameObject);
+        }else{
+            BulletController bulletController = other.gameObject.GetComponent<BulletController>();
+            if (other.tag == "Bullet")
+            {
+                Destroy(other.gameObject);
+                Instantiate(explosionEnemy, transform.position, transform.rotation);
+                life -= bulletController.firePower;
+                if (life <= 0)
+                {
+                    gameManager.AddCoin(score);
+                    Destroy(gameObject);
+                }
+            }
+            if (other.tag == "GreenBall")
+            {
+                Instantiate(explosionEnemy, transform.position, transform.rotation);
+                if(life > bulletController.firePower){
+                    life -= bulletController.firePower;
+                    Destroy(other.gameObject);
+                }
+                else if(life < bulletController.firePower){
+                    bulletController.firePower -= life;
+                    gameManager.AddCoin(score);
+                    Destroy(gameObject);
+                }else{
+                    Destroy(other.gameObject);
+                    gameManager.AddCoin(score);
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 
-    public void setLife(float value){
+    public void SetLife(float value){
         life = value;
     }
 }

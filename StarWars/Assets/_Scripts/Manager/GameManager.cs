@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour {
         int level = MenuManager.GetInstance().level;
         int enemyIndex = (level + waveIndex) % enemys.Length;
         int levelRound = level / enemys.Length + 1;
-        GameObject enemy = enemys[enemyIndex];
         enemyCount = baseEnemyNumber * levelRound;
         float enemyLife = baseEnemyLife * levelRound;
 
@@ -81,8 +80,8 @@ public class GameManager : MonoBehaviour {
                 spawnValue.z
             );
             Quaternion spawnQuaternion = Quaternion.identity;
-            Instantiate(enemys[enemyIndex], spawnPosition, spawnQuaternion);
-            enemys[enemyIndex].GetComponent<EnemyController>().setLife(enemyLife);
+            GameObject enemy = Instantiate(enemys[enemyIndex], spawnPosition, spawnQuaternion);
+            enemy.GetComponent<EnemyController>().SetLife(2);
             yield return new WaitForSeconds(0.3f);
         }
         waveIndex++;
