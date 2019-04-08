@@ -71,7 +71,10 @@
     <Compile Include="Assets\_Complete-Game\Scripts\Done_PlayerController.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Done_RandomRotator.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Done_WeaponController.cs" />
-    <Compile Include="Assets\_Scripts\BulletController.cs" />
+    <Compile Include="Assets\_Scripts\BulletBase\BulletBase.cs" />
+    <Compile Include="Assets\_Scripts\BulletBase\BulletController.cs" />
+    <Compile Include="Assets\_Scripts\BulletBase\OrangeShell.cs" />
+    <Compile Include="Assets\_Scripts\BulletBase\SubWeaponController.cs" />
     <Compile Include="Assets\_Scripts\ButtonListener.cs" />
     <Compile Include="Assets\_Scripts\EnemyController.cs" />
     <Compile Include="Assets\_Scripts\ExplosionController.cs" />
@@ -85,7 +88,6 @@
     <Compile Include="Assets\_Scripts\Manager\SaveManager.cs" />
     <Compile Include="Assets\_Scripts\Manager\UnitySingleton.cs" />
     <Compile Include="Assets\_Scripts\PlayerController.cs" />
-    <Compile Include="Assets\_Scripts\SubWeaponController.cs" />
     <Compile Include="Assets\_TutorialInfo\Scripts\Readme.cs" />
     <None Include="Assets\_Fonts\OpenSans\License!.txt" />
     <Reference Include="UnityEditor.StandardEvents">

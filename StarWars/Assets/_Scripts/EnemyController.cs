@@ -39,11 +39,13 @@ public class EnemyController : MonoBehaviour {
             Destroy(other.gameObject);
             Destroy(gameObject);
         }else{
-            BulletController bulletController = other.gameObject.GetComponent<BulletController>();
+            //fixme 使OrangeShell继承BulletController，以解决下面bullet和GreenBall用的使BulletController，OrangeShell用的是OrangeShell的问题
+            //BulletController bulletController = other.gameObject.GetComponent<BulletController>();
+            OrangeShell bulletController = other.gameObject.GetComponent<OrangeShell>();
+            Instantiate(explosionEnemy, transform.position, transform.rotation);
             if (other.tag == "Bullet")
             {
                 Destroy(other.gameObject);
-                Instantiate(explosionEnemy, transform.position, transform.rotation);
                 life -= bulletController.firePower;
                 if (life <= 0)
                 {
@@ -53,7 +55,6 @@ public class EnemyController : MonoBehaviour {
             }
             if (other.tag == "GreenBall")
             {
-                Instantiate(explosionEnemy, transform.position, transform.rotation);
                 if(life > bulletController.firePower){
                     life -= bulletController.firePower;
                     Destroy(other.gameObject);
@@ -62,8 +63,21 @@ public class EnemyController : MonoBehaviour {
                     bulletController.firePower -= life;
                     gameManager.AddCoin(score);
                     Destroy(gameObject);
-                }else{
+                }
+                else{
                     Destroy(other.gameObject);
+                    gameManager.AddCoin(score);
+                    Destroy(gameObject);
+                }
+            }
+            if(other.tag == "OrangeShell"){
+                Destroy(other.gameObject);
+                if (life > bulletController.firePower)
+                {
+                    life -= bulletController.firePower;
+                }
+                else
+                {
                     gameManager.AddCoin(score);
                     Destroy(gameObject);
                 }
