@@ -41,7 +41,8 @@ public class EnemyController : MonoBehaviour {
         }else{
             //fixme 使OrangeShell继承BulletController，以解决下面bullet和GreenBall用的使BulletController，OrangeShell用的是OrangeShell的问题
             //BulletController bulletController = other.gameObject.GetComponent<BulletController>();
-            OrangeShell bulletController = other.gameObject.GetComponent<OrangeShell>();
+            //OrangeShell bulletController = other.gameObject.GetComponent<OrangeShell>();
+            BulletBase bulletController = other.gameObject.GetComponent<BulletBase>();
             Instantiate(explosionEnemy, transform.position, transform.rotation);
             if (other.tag == "Bullet")
             {

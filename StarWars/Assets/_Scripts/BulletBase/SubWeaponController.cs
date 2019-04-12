@@ -25,7 +25,7 @@ public class SubWeaponController : MonoBehaviour {
                     bulletScale.x * MenuManager.GetInstance().subWeaponScope,
                     bulletScale.y,
                     bulletScale.z * MenuManager.GetInstance().subWeaponScope);
-                bullet.GetComponent<OrangeShell>().SetPower(MenuManager.GetInstance().subWeaponPower);
+                bullet.GetComponent<BulletBase>().SetPower(MenuManager.GetInstance().subWeaponPower);
             }
             firstBorn = !firstBorn;
         }

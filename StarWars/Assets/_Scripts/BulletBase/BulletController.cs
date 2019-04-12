@@ -2,25 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour {
-    public float speed;
-    public float firePower;
-    private GameManager gameManager;
+public class BulletController : BulletBase {
 
-	// Use this for initialization
-	void Start () {
-        GetComponent<Rigidbody>().velocity = transform.forward * speed;
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    // Use this for initialization
+    new void Start (){
+        base.Start();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if(transform.position.z > gameManager.boundary.zMax){
-            Destroy(gameObject);
-        }
+
+    // Update is called once per frame
+    new void Update () {
+        base.Update();
 	}
-
-    public void SetPower(float power){
-        firePower = power;
-    }
 }
