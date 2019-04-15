@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class SubWeaponController : MonoBehaviour {
     public GameObject bulletPrab;
@@ -10,6 +11,14 @@ public class SubWeaponController : MonoBehaviour {
 
 	// Use this for initialization
     void Start () {
+        switch(MenuManager.GetInstance().currentSubWeapon){
+            case MenuManager.SubWeapon.GreenBall:
+                bulletPrab = (GameObject)Resources.Load("GreenBall");
+                break;
+            case MenuManager.SubWeapon.OrangeShell:
+                bulletPrab = (GameObject)Resources.Load("OrangeShell");
+                break;
+        }
 	}
 	
 	// Update is called once per frame
@@ -21,11 +30,23 @@ public class SubWeaponController : MonoBehaviour {
             {
                 GameObject bullet = Instantiate(bulletPrab, transform.position, transform.rotation);
                 Vector3 bulletScale = bullet.transform.localScale;
+                float scope = 0;
+                float power = 0;
+                switch(MenuManager.GetInstance().currentSubWeapon){
+                    case MenuManager.SubWeapon.GreenBall:
+                        scope = MenuManager.GetInstance().greenBallScope;
+                        power = MenuManager.GetInstance().greenBallPower;
+                        break;
+                    case MenuManager.SubWeapon.OrangeShell:
+                        scope = MenuManager.GetInstance().orangeShellScope;
+                        power = MenuManager.GetInstance().orangeShellPower;
+                        break;
+                }
                 bullet.transform.localScale = new Vector3(
-                    bulletScale.x * MenuManager.GetInstance().subWeaponScope,
+                    bulletScale.x * scope,
                     bulletScale.y,
-                    bulletScale.z * MenuManager.GetInstance().subWeaponScope);
-                bullet.GetComponent<BulletBase>().SetPower(MenuManager.GetInstance().subWeaponPower);
+                    bulletScale.z * scope);
+                bullet.GetComponent<BulletBase>().SetPower(power);
             }
             firstBorn = !firstBorn;
         }

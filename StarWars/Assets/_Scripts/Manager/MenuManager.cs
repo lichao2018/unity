@@ -4,18 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager
 {
+    public enum SubWeapon{
+        GreenBall,
+        OrangeShell
+    }
+
     float coin = 100;
     static MenuManager instance;
-    Text coinText;
-    Text weaponFireRateText;
-    Text weaponPowerText;
 
     public int level = 1;
 
     public float weaponFireRate = 1;
     public float weaponPower = 1;
-    public float subWeaponScope = 1;
-    public float subWeaponPower = 1;
+    public float greenBallScope = 1;
+    public float greenBallPower = 1;
+    public float orangeShellScope = 1;
+    public float orangeShellPower = 1;
+    public SubWeapon currentSubWeapon = SubWeapon.GreenBall;
 
     public static MenuManager GetInstance(){
         if(instance == null){
@@ -33,19 +38,44 @@ public class MenuManager
         if(SceneManager.GetActiveScene().name != "Menu"){
             return;
         }
-        coinText = GameObject.Find("CoinText").GetComponent<Text>();
-        weaponFireRateText = GameObject.Find("ButtonWeaponFireRateLvUp").GetComponentInChildren<Text>();
-        weaponPowerText = GameObject.Find("ButtonWeaponPowerLvUp").GetComponentInChildren<Text>();
+        Text coinText = GameObject.Find("CoinText").GetComponent<Text>();
         Text levelText = GameObject.Find("LevelText").GetComponent<Text>();
-        Text subWeaponScopeLvUpText = GameObject.Find("SubWeaponScopeLvUp").GetComponentInChildren<Text>();
-        Text subWeaponPowerLvUpText = GameObject.Find("SubWeaponPowerLvUp").GetComponentInChildren<Text>();
+        GameObject root = GameObject.Find("TabPanel");
+        Text weaponFireRateText = root.transform.Find("WeaponPanel/RateLayout/Text").gameObject.GetComponent<Text>();
+        Text weaponPowerText = root.transform.Find("WeaponPanel/PowerLayout/Text").gameObject.GetComponent<Text>();
+        Text subWeaponScopeLvUpText = root.transform.Find("SubPanel/StrenghtLayout/Text").gameObject.GetComponent<Text>();
+        Text subWeaponPowerLvUpText = root.transform.Find("SubPanel/SubPowerLayout/Text").gameObject.GetComponent<Text>();
 
         coinText.text = "Coin:" + coin;
-        weaponFireRateText.text = "WeaponFireRate - " + weaponFireRate;
-        weaponPowerText.text = "WeaponPower - " + weaponPower;
         levelText.text = "Level : " + level;
-        subWeaponScopeLvUpText.text = "SubScope-" + subWeaponScope;
-        subWeaponPowerLvUpText.text = "SubPower-" + subWeaponPower;
+        if (weaponFireRateText.enabled)
+        {
+            weaponFireRateText.text = "射速(Lv" + weaponFireRate + ")";
+        }
+        if (weaponPowerText.enabled)
+        {
+            weaponPowerText.text = "火力(Lv" + weaponPower + ")";
+        }
+        float subScope = 1;
+        float subPower = 1;
+        switch(currentSubWeapon){
+            case SubWeapon.GreenBall:
+                subScope = greenBallScope;
+                subPower = greenBallPower;
+                break;
+            case SubWeapon.OrangeShell:
+                subScope = orangeShellScope;
+                subPower = orangeShellPower;
+                break;
+        }
+        if (subWeaponScopeLvUpText.enabled)
+        {
+            subWeaponScopeLvUpText.text = "强度(Lv" + subScope + ")";
+        }
+        if (subWeaponPowerLvUpText.enabled)
+        {
+            subWeaponPowerLvUpText.text = "火力(Lv" + subPower + ")";
+        }
     }
 
     public void AddCoin(int value)
@@ -90,7 +120,14 @@ public class MenuManager
     {
         if (coin >= 10)
         {
-            subWeaponScope++;
+            switch(currentSubWeapon){
+                case SubWeapon.GreenBall:
+                    greenBallScope++;
+                    break;
+                case SubWeapon.OrangeShell:
+                    orangeShellScope++;
+                    break;
+            }
             SubCoin(10);
         }
     }
@@ -99,7 +136,15 @@ public class MenuManager
     {
         if (coin >= 10)
         {
-            subWeaponPower++;
+            switch (currentSubWeapon)
+            {
+                case SubWeapon.GreenBall:
+                    greenBallPower++;
+                    break;
+                case SubWeapon.OrangeShell:
+                    orangeShellPower++;
+                    break;
+            }
             SubCoin(10);
         }
     }
