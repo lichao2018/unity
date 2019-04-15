@@ -6,7 +6,8 @@ public class MenuManager
 {
     public enum SubWeapon{
         GreenBall,
-        OrangeShell
+        OrangeShell,
+        Lightning
     }
 
     float coin = 100;
@@ -20,7 +21,9 @@ public class MenuManager
     public float greenBallPower = 1;
     public float orangeShellScope = 1;
     public float orangeShellPower = 1;
-    public SubWeapon currentSubWeapon = SubWeapon.GreenBall;
+    public float lightningScope = 1;
+    public float lightningPower = 1;
+    public SubWeapon currentSubWeapon = SubWeapon.Lightning;
 
     public static MenuManager GetInstance(){
         if(instance == null){

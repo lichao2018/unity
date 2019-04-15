@@ -73,6 +73,7 @@
     <Compile Include="Assets\_Complete-Game\Scripts\Done_WeaponController.cs" />
     <Compile Include="Assets\_Scripts\BulletBase\BulletBase.cs" />
     <Compile Include="Assets\_Scripts\BulletBase\BulletController.cs" />
+    <Compile Include="Assets\_Scripts\BulletBase\Lightning.cs" />
     <Compile Include="Assets\_Scripts\BulletBase\OrangeShell.cs" />
     <Compile Include="Assets\_Scripts\BulletBase\SubWeaponController.cs" />
     <Compile Include="Assets\_Scripts\ButtonListener.cs" />

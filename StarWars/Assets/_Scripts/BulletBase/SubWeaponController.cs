@@ -18,6 +18,9 @@ public class SubWeaponController : MonoBehaviour {
             case MenuManager.SubWeapon.OrangeShell:
                 bulletPrab = (GameObject)Resources.Load("OrangeShell");
                 break;
+            case MenuManager.SubWeapon.Lightning:
+                bulletPrab = (GameObject)Resources.Load("Lightning");
+                break;
         }
 	}
 	
@@ -40,6 +43,10 @@ public class SubWeaponController : MonoBehaviour {
                     case MenuManager.SubWeapon.OrangeShell:
                         scope = MenuManager.GetInstance().orangeShellScope;
                         power = MenuManager.GetInstance().orangeShellPower;
+                        break;
+                    case MenuManager.SubWeapon.Lightning:
+                        scope = MenuManager.GetInstance().lightningScope;
+                        power = MenuManager.GetInstance().lightningPower;
                         break;
                 }
                 bullet.transform.localScale = new Vector3(

@@ -39,9 +39,6 @@ public class EnemyController : MonoBehaviour {
             Destroy(other.gameObject);
             Destroy(gameObject);
         }else{
-            //fixme 使OrangeShell继承BulletController，以解决下面bullet和GreenBall用的使BulletController，OrangeShell用的是OrangeShell的问题
-            //BulletController bulletController = other.gameObject.GetComponent<BulletController>();
-            //OrangeShell bulletController = other.gameObject.GetComponent<OrangeShell>();
             BulletBase bulletController = other.gameObject.GetComponent<BulletBase>();
             Instantiate(explosionEnemy, transform.position, transform.rotation);
             if (other.tag == "Bullet")
@@ -73,6 +70,17 @@ public class EnemyController : MonoBehaviour {
             }
             if(other.tag == "OrangeShell"){
                 Destroy(other.gameObject);
+                if (life > bulletController.firePower)
+                {
+                    life -= bulletController.firePower;
+                }
+                else
+                {
+                    gameManager.AddCoin(score);
+                    Destroy(gameObject);
+                }
+            }
+            if(other.tag == "Lightning"){
                 if (life > bulletController.firePower)
                 {
                     life -= bulletController.firePower;
