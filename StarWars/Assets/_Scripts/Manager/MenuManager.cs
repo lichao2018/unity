@@ -23,7 +23,7 @@ public class MenuManager
     public float orangeShellPower = 1;
     public float lightningScope = 1;
     public float lightningPower = 1;
-    public SubWeapon currentSubWeapon = SubWeapon.Lightning;
+    public SubWeapon currentSubWeapon = SubWeapon.GreenBall;
 
     public static MenuManager GetInstance(){
         if(instance == null){
