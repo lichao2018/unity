@@ -57,4 +57,9 @@ public class ButtonListener : MonoBehaviour {
         MenuManager.GetInstance().currentSubWeapon = MenuManager.SubWeapon.OrangeShell;
         MenuManager.GetInstance().UpdateUI();
     }
+
+    public void LightningSelected(){
+        MenuManager.GetInstance().currentSubWeapon = MenuManager.SubWeapon.Lightning;
+        MenuManager.GetInstance().UpdateUI();
+    }
 }

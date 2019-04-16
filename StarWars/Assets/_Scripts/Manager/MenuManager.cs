@@ -70,6 +70,10 @@ public class MenuManager
                 subScope = orangeShellScope;
                 subPower = orangeShellPower;
                 break;
+            case SubWeapon.Lightning:
+                subScope = lightningScope;
+                subPower = lightningPower;
+                break;
         }
         if (subWeaponScopeLvUpText.enabled)
         {
@@ -130,6 +134,9 @@ public class MenuManager
                 case SubWeapon.OrangeShell:
                     orangeShellScope++;
                     break;
+                case SubWeapon.Lightning:
+                    lightningScope++;
+                    break;
             }
             SubCoin(10);
         }
@@ -146,6 +153,9 @@ public class MenuManager
                     break;
                 case SubWeapon.OrangeShell:
                     orangeShellPower++;
+                    break;
+                case SubWeapon.Lightning:
+                    lightningPower++;
                     break;
             }
             SubCoin(10);
