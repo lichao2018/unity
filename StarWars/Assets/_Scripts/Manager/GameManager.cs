@@ -12,12 +12,9 @@ public class Boundary{
 public class GameManager : MonoBehaviour {
     int waves = 3;
     int waveIndex = 0;
-    public GameObject[] enemys;
     int waveKillCount;
     int enemyCount;
-
-    public int baseEnemyNumber;
-    public int baseEnemyLife;
+    int level = 1;
 
     public Boundary boundary;
     public Vector3 spawnValue;
@@ -28,8 +25,19 @@ public class GameManager : MonoBehaviour {
     public Text gameOverText;
     public Text restartText;
 
+    GameObject enemyStonePrefab;
+    GameObject enemyAsteroidPrefab;
+    GameObject enemyMeteoritePrefab;
+    GameObject enemyShipPrefab;
+
     private void Start()
     {
+        enemyStonePrefab = (GameObject)Resources.Load("Stone");
+        enemyAsteroidPrefab = (GameObject)Resources.Load("Asteroid");
+        enemyMeteoritePrefab = (GameObject)Resources.Load("Meteorite");
+        enemyShipPrefab = (GameObject)Resources.Load("EnemyShip");
+
+        level = MenuManager.GetInstance().level;
         coin = 0;
         UpdateCoin();
         gameOver = false;
@@ -64,15 +72,28 @@ public class GameManager : MonoBehaviour {
     }
 
     protected IEnumerator SpawnWaves(){
-        int level = MenuManager.GetInstance().level;
-        int enemyIndex = (level + waveIndex) % enemys.Length;
-        int levelRound = level / enemys.Length + 1;
-        enemyCount = baseEnemyNumber * levelRound;
-        float enemyLife = baseEnemyLife * levelRound;
-
+        enemyCount = 4 + 3 + 2 + level * 3 + waveIndex * 3;
         yield return new WaitForSeconds(1f);
 
-        for (int i = 0; i < enemyCount; i++)
+        //todo 生成4/3/2+level+wave个1/2/3级怪
+        for (int i = 0; i < 4 + level + waveIndex; i ++){
+            Vector3 spawnPosition = new Vector3(
+                Random.Range(-spawnValue.x, spawnValue.x),
+                spawnValue.y,
+                spawnValue.z
+            );
+            Quaternion spawnQuaternion = Quaternion.identity;
+            GameObject enemy = Instantiate(enemyStonePrefab, spawnPosition, spawnQuaternion);
+            enemy.GetComponent<EnemyController>().SetLife(5+level+ waveIndex);
+            Vector3 scale = enemy.transform.localScale;
+            enemy.transform.localScale = new Vector3(
+                scale.x + level + waveIndex,
+                scale.y,
+                scale.z + level + waveIndex
+            );
+            yield return new WaitForSeconds(0.3f);
+        }
+        for (int i = 0; i < 3 + level + waveIndex; i++)
         {
             Vector3 spawnPosition = new Vector3(
                 Random.Range(-spawnValue.x, spawnValue.x),
@@ -80,10 +101,37 @@ public class GameManager : MonoBehaviour {
                 spawnValue.z
             );
             Quaternion spawnQuaternion = Quaternion.identity;
-            GameObject enemy = Instantiate(enemys[enemyIndex], spawnPosition, spawnQuaternion);
-            enemy.GetComponent<EnemyController>().SetLife(2);
+            GameObject enemy = Instantiate(enemyMeteoritePrefab, spawnPosition, spawnQuaternion);
+            enemy.GetComponent<EnemyController>().SetLife(7 + level + waveIndex);
+            Vector3 scale = enemy.transform.localScale;
+            enemy.transform.localScale = new Vector3(
+                scale.x + level + waveIndex,
+                scale.y,
+                scale.z + level + waveIndex
+            );
             yield return new WaitForSeconds(0.3f);
         }
+        for (int i = 0; i < 2 + level + waveIndex; i++)
+        {
+            Vector3 spawnPosition = new Vector3(
+                Random.Range(-spawnValue.x, spawnValue.x),
+                spawnValue.y,
+                spawnValue.z
+            );
+            Quaternion spawnQuaternion = Quaternion.identity;
+            GameObject enemy = Instantiate(enemyShipPrefab, spawnPosition, spawnQuaternion);
+            enemy.GetComponent<EnemyController>().SetLife(9 + level + waveIndex);
+            Vector3 scale = enemy.transform.localScale;
+            enemy.transform.localScale = new Vector3(
+                scale.x + level + waveIndex,
+                scale.y,
+                scale.z + level + waveIndex
+            );
+            yield return new WaitForSeconds(0.3f);
+        }
+        //todo 1/2/3级怪设置生命5/7/9+level+wave,大小1/2/3+level+wave(无限趋近于max值，不然超过max太快也不好)
+        //todo 1级怪现在样子，2级怪间隔时间回血，3级怪死后爆炸
+        //todo 敌人路径随机角度
         waveIndex++;
     }
 
