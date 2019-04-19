@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour {
             );
             Quaternion spawnQuaternion = Quaternion.identity;
             GameObject enemy = Instantiate(enemyStonePrefab, spawnPosition, spawnQuaternion);
-            enemy.GetComponent<EnemyController>().SetLife(5+level+ waveIndex);
+            enemy.GetComponent<EnemyBase>().SetLife(5+level+ waveIndex);
             Vector3 scale = enemy.transform.localScale;
             enemy.transform.localScale = new Vector3(
                 scale.x + level + waveIndex,
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour {
             );
             Quaternion spawnQuaternion = Quaternion.identity;
             GameObject enemy = Instantiate(enemyMeteoritePrefab, spawnPosition, spawnQuaternion);
-            enemy.GetComponent<EnemyController>().SetLife(7 + level + waveIndex);
+            enemy.GetComponent<EnemyBase>().SetLife(7 + level + waveIndex);
             Vector3 scale = enemy.transform.localScale;
             enemy.transform.localScale = new Vector3(
                 scale.x + level + waveIndex,
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour {
             );
             Quaternion spawnQuaternion = Quaternion.identity;
             GameObject enemy = Instantiate(enemyShipPrefab, spawnPosition, spawnQuaternion);
-            enemy.GetComponent<EnemyController>().SetLife(9 + level + waveIndex);
+            enemy.GetComponent<EnemyBase>().SetLife(9 + level + waveIndex);
             Vector3 scale = enemy.transform.localScale;
             enemy.transform.localScale = new Vector3(
                 scale.x + level + waveIndex,

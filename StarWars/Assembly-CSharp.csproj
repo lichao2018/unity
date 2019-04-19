@@ -77,7 +77,9 @@
     <Compile Include="Assets\_Scripts\BulletBase\OrangeShell.cs" />
     <Compile Include="Assets\_Scripts\BulletBase\SubWeaponController.cs" />
     <Compile Include="Assets\_Scripts\ButtonListener.cs" />
-    <Compile Include="Assets\_Scripts\EnemyController.cs" />
+    <Compile Include="Assets\_Scripts\Enemy\EnemyBase.cs" />
+    <Compile Include="Assets\_Scripts\Enemy\EnemyShip.cs" />
+    <Compile Include="Assets\_Scripts\Enemy\Stone.cs" />
     <Compile Include="Assets\_Scripts\ExplosionController.cs" />
     <Compile Include="Assets\_Scripts\Manager\AudioManager.cs" />
     <Compile Include="Assets\_Scripts\Manager\EventManager.cs" />
