@@ -11,12 +11,14 @@ public class EnemyBase : MonoBehaviour {
     public GameManager gameManager;
     public int score;
     public float life;
+    //Vector3 velocity;
 
     // Use this for initialization
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         GetComponent<Rigidbody>().angularVelocity = Random.insideUnitSphere * rotateSpeed;
+        //velocity = new Vector3(Random.Range(-1, 1), 0, Random.Range((float)-1.5, -1));
         GetComponent<Rigidbody>().velocity = new Vector3(1, 0, -1) * moveSpeed;
     }
 

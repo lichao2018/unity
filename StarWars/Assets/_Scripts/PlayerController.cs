@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour {
     public GameObject bullet;
     public float firePower;
 
+    private Vector3 MousePositionLast;//用于计算移动方向的起始位置
+    private Vector3 MousePositionNew;//用于计算移动方向的结尾位置
+    private Vector3 MouseMoveDirection;//用于表示移动方向
+    private Vector3 MouseWorldMoveDirection;//用于在世界坐标系里移动某物体的方向向量
+
     // Use this for initialization
     void Start () {
         fireRate = MenuManager.GetInstance().weaponFireRate;
@@ -27,10 +32,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Move(){
-        float movementHorizontal = Input.GetAxis("Horizontal");
-        float movementVertical = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(movementHorizontal, 0, movementVertical);
-        GetComponent<Rigidbody>().velocity = movement * speed;
+        MousePositionLast = MousePositionNew;
+        MousePositionNew = Input.mousePosition;
+        MouseMoveDirection = MousePositionNew - MousePositionLast; //用两个坐标相减，得出鼠标的移动方向向量
+
+        MouseWorldMoveDirection = new Vector3(MouseMoveDirection.x, 0, MouseMoveDirection.y);
+        GetComponent<Rigidbody>().velocity = MouseWorldMoveDirection;
     }
 
     private void Fire(){
