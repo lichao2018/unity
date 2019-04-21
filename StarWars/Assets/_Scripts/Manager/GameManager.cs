@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour {
         level = MenuManager.GetInstance().level;
         coin = 0;
         UpdateCoin();
-        gameOver = false;
+        gameOver = true;
         gameOverText.text = "";
         restartText.text = "";
         StartCoroutine(SpawnWaves());
@@ -60,8 +60,10 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver()
     {
-        gameOver = true;
-        gameOverText.text = "Game Over!";
+        if (gameOver)
+        {
+            gameOverText.text = "Game Over!";
+        }
         MenuManager.GetInstance().AddCoin(coin);
         StartCoroutine(BackToMenu());
     }
@@ -140,6 +142,7 @@ public class GameManager : MonoBehaviour {
         if(waveKillCount == enemyCount){
             waveKillCount = 0;
             if(waveIndex == waves){
+                gameOver = false;
                 GameOver();
                 MenuManager.GetInstance().AddLevel();
             }else{
