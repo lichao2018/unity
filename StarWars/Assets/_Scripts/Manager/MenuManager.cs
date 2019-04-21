@@ -10,7 +10,7 @@ public class MenuManager
         Lightning
     }
 
-    float coin = 100;
+    public float coin = 100;
     static MenuManager instance;
 
     public int level = 1;
@@ -83,9 +83,10 @@ public class MenuManager
         {
             subWeaponPowerLvUpText.text = "火力(Lv" + subPower + ")";
         }
+        SaveManager.SaveData();
     }
 
-    public void AddCoin(int value)
+    public void AddCoin(float value)
     {
         coin += value;
         UpdateUI();
