@@ -43,17 +43,9 @@ public class PlayerController : MonoBehaviour {
     private void Fire(){
         if (Time.time > nextFire)
         {
-            nextFire = Time.time + fireRate;
+            nextFire = Time.time + (1/fireRate);
             GameObject bulletObj = Instantiate(bullet, shootSpawn.position, shootSpawn.rotation);
             bulletObj.GetComponent<BulletController>().SetPower(firePower);
         }
-    }
-
-    public void FireRateLvUp(float value){
-        fireRate += value;
-    }
-
-    public void FirePowerLvUp(float power){
-        firePower += power;
     }
 }
