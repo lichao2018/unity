@@ -87,12 +87,6 @@ public class GameManager : MonoBehaviour {
             Quaternion spawnQuaternion = Quaternion.identity;
             GameObject enemy = Instantiate(enemyStonePrefab, spawnPosition, spawnQuaternion);
             enemy.GetComponent<EnemyBase>().SetLife(5+level+ waveIndex);
-            Vector3 scale = enemy.transform.localScale;
-            enemy.transform.localScale = new Vector3(
-                scale.x + level + waveIndex,
-                scale.y,
-                scale.z + level + waveIndex
-            );
             yield return new WaitForSeconds(0.3f);
         }
         for (int i = 0; i < 3 + level + waveIndex; i++)
@@ -105,12 +99,6 @@ public class GameManager : MonoBehaviour {
             Quaternion spawnQuaternion = Quaternion.identity;
             GameObject enemy = Instantiate(enemyMeteoritePrefab, spawnPosition, spawnQuaternion);
             enemy.GetComponent<EnemyBase>().SetLife(7 + level + waveIndex);
-            Vector3 scale = enemy.transform.localScale;
-            enemy.transform.localScale = new Vector3(
-                scale.x + level + waveIndex,
-                scale.y,
-                scale.z + level + waveIndex
-            );
             yield return new WaitForSeconds(0.3f);
         }
         for (int i = 0; i < 2 + level + waveIndex; i++)
@@ -123,12 +111,6 @@ public class GameManager : MonoBehaviour {
             Quaternion spawnQuaternion = Quaternion.identity;
             GameObject enemy = Instantiate(enemyShipPrefab, spawnPosition, spawnQuaternion);
             enemy.GetComponent<EnemyBase>().SetLife(9 + level + waveIndex);
-            Vector3 scale = enemy.transform.localScale;
-            enemy.transform.localScale = new Vector3(
-                scale.x + level + waveIndex,
-                scale.y,
-                scale.z + level + waveIndex
-            );
             yield return new WaitForSeconds(0.3f);
         }
         //todo 1/2/3级怪设置生命5/7/9+level+wave,大小1/2/3+level+wave(无限趋近于max值，不然超过max太快也不好)
