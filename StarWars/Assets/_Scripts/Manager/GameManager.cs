@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
     int waveIndex = 0;
     int waveKillCount;
     int enemyCount;
-    int level = 1;
+    float level = 1;
 
     public Boundary boundary;
     public Vector3 spawnValue;
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour {
     }
 
     protected IEnumerator SpawnWaves(){
-        enemyCount = 4 + 3 + 2 + level * 3 + waveIndex * 3;
+        enemyCount = (int)(4 + 3 + 2 + level * 3 + waveIndex * 3);
         yield return new WaitForSeconds(1f);
 
         //todo 生成4/3/2+level+wave个1/2/3级怪

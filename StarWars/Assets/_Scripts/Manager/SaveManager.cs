@@ -8,6 +8,7 @@ public class SaveManager : MonoBehaviour {
     {
         //coin
         GetData("coin", MenuManager.GetInstance().coin);
+        GetData("level", MenuManager.GetInstance().level);
         //weaponRate
         GetData("weaponrate", MenuManager.GetInstance().weaponFireRate);
         //weaponPower
@@ -26,9 +27,10 @@ public class SaveManager : MonoBehaviour {
         GetData("lightningpower", MenuManager.GetInstance().lightningPower);
     }
 
-    public static void SaveData()
+    public void SaveData()
     {
         PlayerPrefs.SetFloat("coin", MenuManager.GetInstance().coin);
+        PlayerPrefs.SetFloat("level", MenuManager.GetInstance().level);
         PlayerPrefs.SetFloat("weaponrate", MenuManager.GetInstance().weaponFireRate);
         PlayerPrefs.SetFloat("weaponpower", MenuManager.GetInstance().weaponPower);
         PlayerPrefs.SetFloat("greenballscope", MenuManager.GetInstance().greenBallScope);
@@ -37,6 +39,7 @@ public class SaveManager : MonoBehaviour {
         PlayerPrefs.SetFloat("orangeshellpower", MenuManager.GetInstance().orangeShellPower);
         PlayerPrefs.SetFloat("lightningscope", MenuManager.GetInstance().lightningScope);
         PlayerPrefs.SetFloat("lightningpower", MenuManager.GetInstance().lightningPower);
+        PlayerPrefs.Save();
     }
 
     void GetData(string key, float value){
@@ -49,6 +52,9 @@ public class SaveManager : MonoBehaviour {
         switch(key){
             case "coin":
                 MenuManager.GetInstance().AddCoin(data);
+                break;
+            case "level":
+                MenuManager.GetInstance().level = data;
                 break;
             case "weaponrate":
                 MenuManager.GetInstance().weaponFireRate = data;

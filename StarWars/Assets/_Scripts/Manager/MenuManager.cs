@@ -13,7 +13,7 @@ public class MenuManager
     public float coin = 100;
     static MenuManager instance;
 
-    public int level = 1;
+    public float level = 1;
 
     public float weaponFireRate = 1;
     public float weaponPower = 1;
@@ -83,7 +83,6 @@ public class MenuManager
         {
             subWeaponPowerLvUpText.text = "火力(Lv" + subPower + ")";
         }
-        SaveManager.SaveData();
     }
 
     public void AddCoin(float value)

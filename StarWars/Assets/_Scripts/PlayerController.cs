@@ -10,10 +10,9 @@ public class PlayerController : MonoBehaviour {
     public GameObject bullet;
     public float firePower;
 
-    private Vector3 MousePositionLast;//用于计算移动方向的起始位置
-    private Vector3 MousePositionNew;//用于计算移动方向的结尾位置
-    private Vector3 MouseMoveDirection;//用于表示移动方向
-    private Vector3 MouseWorldMoveDirection;//用于在世界坐标系里移动某物体的方向向量
+    private Vector3 touchposition;
+    private bool isMouseDown = false;
+    private Vector3 lastMousePosition = Vector3.zero;
 
     // Use this for initialization
     void Start () {
@@ -32,12 +31,24 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Move(){
-        MousePositionLast = MousePositionNew;
-        MousePositionNew = Input.mousePosition;
-        MouseMoveDirection = MousePositionNew - MousePositionLast; //用两个坐标相减，得出鼠标的移动方向向量
-
-        MouseWorldMoveDirection = new Vector3(MouseMoveDirection.x, 0, MouseMoveDirection.y);
-        GetComponent<Rigidbody>().velocity = MouseWorldMoveDirection;
+        if (Input.GetMouseButtonDown(0))
+        {
+            isMouseDown = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isMouseDown = false;
+            lastMousePosition = Vector3.zero;
+        }
+        if (isMouseDown)
+        {
+            if (lastMousePosition != Vector3.zero)
+            {
+                Vector3 offset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - lastMousePosition;
+                transform.position = transform.position + offset;
+            }
+            lastMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
     }
 
     private void Fire(){
