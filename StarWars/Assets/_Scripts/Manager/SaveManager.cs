@@ -6,6 +6,19 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour {
 
+    public enum DataType{
+        Coin,
+        Level,
+        WeaponRate,
+        WeaponPower,
+        GreenballScope,
+        GreenballPower,
+        OrangeshellScope,
+        OrangeshellPower,
+        LightningScope,
+        LightningPower
+    }
+
     private void Awake()
     {
         //coin
@@ -29,18 +42,40 @@ public class SaveManager : MonoBehaviour {
         GetData("lightningpower", MenuManager.GetInstance().LightningPower);
     }
 
-    public static void SaveData()
+    public static void SaveData(DataType type)
     {
-        PlayerPrefs.SetFloat("coin", MenuManager.GetInstance().Coin);
-        PlayerPrefs.SetFloat("level", MenuManager.GetInstance().Level);
-        PlayerPrefs.SetFloat("weaponrate", MenuManager.GetInstance().WeaponFireRate);
-        PlayerPrefs.SetFloat("weaponpower", MenuManager.GetInstance().WeaponPower);
-        PlayerPrefs.SetFloat("greenballscope", MenuManager.GetInstance().GreenBallScope);
-        PlayerPrefs.SetFloat("greenballpower", MenuManager.GetInstance().GreenBallPower);
-        PlayerPrefs.SetFloat("orangeshellscope", MenuManager.GetInstance().OrangeShellScope);
-        PlayerPrefs.SetFloat("orangeshellpower", MenuManager.GetInstance().OrangeShellPower);
-        PlayerPrefs.SetFloat("lightningscope", MenuManager.GetInstance().LightningScope);
-        PlayerPrefs.SetFloat("lightningpower", MenuManager.GetInstance().LightningPower);
+        switch(type){
+            case DataType.Coin:
+                PlayerPrefs.SetFloat("coin", MenuManager.GetInstance().Coin);
+                break;
+            case DataType.Level:
+                PlayerPrefs.SetFloat("level", MenuManager.GetInstance().Level);
+                break;
+            case DataType.WeaponRate:
+                PlayerPrefs.SetFloat("weaponrate", MenuManager.GetInstance().WeaponFireRate);
+                break;
+            case DataType.WeaponPower:
+                PlayerPrefs.SetFloat("weaponpower", MenuManager.GetInstance().WeaponPower);
+                break;
+            case DataType.GreenballScope:
+                PlayerPrefs.SetFloat("greenballscope", MenuManager.GetInstance().GreenBallScope);
+                break;
+            case DataType.GreenballPower:
+                PlayerPrefs.SetFloat("greenballpower", MenuManager.GetInstance().GreenBallPower);
+                break;
+            case DataType.OrangeshellScope:
+                PlayerPrefs.SetFloat("orangeshellscope", MenuManager.GetInstance().OrangeShellScope);
+                break;
+            case DataType.OrangeshellPower:
+                PlayerPrefs.SetFloat("orangeshellpower", MenuManager.GetInstance().OrangeShellPower);
+                break;
+            case DataType.LightningScope:
+                PlayerPrefs.SetFloat("lightningscope", MenuManager.GetInstance().LightningScope);
+                break;
+            case DataType.LightningPower:
+                PlayerPrefs.SetFloat("lightningpower", MenuManager.GetInstance().LightningPower);
+                break;
+        }
         PlayerPrefs.Save();
     }
 

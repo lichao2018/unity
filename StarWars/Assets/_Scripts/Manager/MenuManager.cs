@@ -18,7 +18,7 @@ public class MenuManager
     {
         set{
             coin = value;
-            SaveManager.SaveData();
+            SaveManager.SaveData(SaveManager.DataType.Coin);
         }
         get
         {
@@ -32,7 +32,7 @@ public class MenuManager
     {
         set{
             level = value;
-            SaveManager.SaveData();
+            SaveManager.SaveData(SaveManager.DataType.Level);
         }
         get
         {
@@ -46,7 +46,7 @@ public class MenuManager
     {
         set{
             weaponFireRate = value;
-            SaveManager.SaveData();
+            SaveManager.SaveData(SaveManager.DataType.WeaponRate);
         }
         get
         {
@@ -61,7 +61,7 @@ public class MenuManager
         set
         {
             weaponPower = value;
-            SaveManager.SaveData();
+            SaveManager.SaveData(SaveManager.DataType.WeaponPower);
         }
         get
         {
@@ -76,7 +76,7 @@ public class MenuManager
         set
         {
             greenBallScope = value;
-            SaveManager.SaveData();
+            SaveManager.SaveData(SaveManager.DataType.GreenballScope);
         }
         get
         {
@@ -91,7 +91,7 @@ public class MenuManager
         set
         {
             greenBallPower = value;
-            SaveManager.SaveData();
+            SaveManager.SaveData(SaveManager.DataType.GreenballPower);
         }
         get
         {
@@ -106,7 +106,7 @@ public class MenuManager
         set
         {
             orangeShellScope = value;
-            SaveManager.SaveData();
+            SaveManager.SaveData(SaveManager.DataType.OrangeshellScope);
         }
         get
         {
@@ -121,7 +121,7 @@ public class MenuManager
         set
         {
             orangeShellPower = value;
-            SaveManager.SaveData();
+            SaveManager.SaveData(SaveManager.DataType.OrangeshellPower);
         }
         get
         {
@@ -136,7 +136,7 @@ public class MenuManager
         set
         {
             lightningScope = value;
-            SaveManager.SaveData();
+            SaveManager.SaveData(SaveManager.DataType.LightningScope);
         }
         get
         {
@@ -151,7 +151,7 @@ public class MenuManager
         set
         {
             lightningPower = value;
-            SaveManager.SaveData();
+            SaveManager.SaveData(SaveManager.DataType.LightningPower);
         }
         get
         {
