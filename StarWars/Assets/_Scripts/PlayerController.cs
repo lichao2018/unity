@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        fireRate = MenuManager.GetInstance().weaponFireRate;
-        firePower = MenuManager.GetInstance().weaponPower;
+        fireRate = MenuManager.GetInstance().WeaponFireRate;
+        firePower = MenuManager.GetInstance().WeaponPower;
     }
 	
 	// Update is called once per frame

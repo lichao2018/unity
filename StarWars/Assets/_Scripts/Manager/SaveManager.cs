@@ -2,43 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//todo add enum data type : coin, level, weaponrate....
+
 public class SaveManager : MonoBehaviour {
 
     private void Awake()
     {
         //coin
-        GetData("coin", MenuManager.GetInstance().coin);
-        GetData("level", MenuManager.GetInstance().level);
+        GetData("coin", MenuManager.GetInstance().Coin);
+        GetData("level", MenuManager.GetInstance().Level);
         //weaponRate
-        GetData("weaponrate", MenuManager.GetInstance().weaponFireRate);
+        GetData("weaponrate", MenuManager.GetInstance().WeaponFireRate);
         //weaponPower
-        GetData("weaponpower", MenuManager.GetInstance().weaponPower);
+        GetData("weaponpower", MenuManager.GetInstance().WeaponPower);
         //greenball scope
-        GetData("greenballscope", MenuManager.GetInstance().greenBallScope);
+        GetData("greenballscope", MenuManager.GetInstance().GreenBallScope);
         //greenball power
-        GetData("greenballpower", MenuManager.GetInstance().greenBallPower);
+        GetData("greenballpower", MenuManager.GetInstance().GreenBallPower);
         //orangeshell scope
-        GetData("orangeshellscope", MenuManager.GetInstance().orangeShellScope);
+        GetData("orangeshellscope", MenuManager.GetInstance().OrangeShellScope);
         //orangeshell power
-        GetData("orangeshellpower", MenuManager.GetInstance().orangeShellPower);
+        GetData("orangeshellpower", MenuManager.GetInstance().OrangeShellPower);
         //lightning scope
-        GetData("lightningscope", MenuManager.GetInstance().lightningScope);
+        GetData("lightningscope", MenuManager.GetInstance().LightningScope);
         //lightning power
-        GetData("lightningpower", MenuManager.GetInstance().lightningPower);
+        GetData("lightningpower", MenuManager.GetInstance().LightningPower);
     }
 
-    public void SaveData()
+    public static void SaveData()
     {
-        PlayerPrefs.SetFloat("coin", MenuManager.GetInstance().coin);
-        PlayerPrefs.SetFloat("level", MenuManager.GetInstance().level);
-        PlayerPrefs.SetFloat("weaponrate", MenuManager.GetInstance().weaponFireRate);
-        PlayerPrefs.SetFloat("weaponpower", MenuManager.GetInstance().weaponPower);
-        PlayerPrefs.SetFloat("greenballscope", MenuManager.GetInstance().greenBallScope);
-        PlayerPrefs.SetFloat("greenballpower", MenuManager.GetInstance().greenBallPower);
-        PlayerPrefs.SetFloat("orangeshellscope", MenuManager.GetInstance().orangeShellScope);
-        PlayerPrefs.SetFloat("orangeshellpower", MenuManager.GetInstance().orangeShellPower);
-        PlayerPrefs.SetFloat("lightningscope", MenuManager.GetInstance().lightningScope);
-        PlayerPrefs.SetFloat("lightningpower", MenuManager.GetInstance().lightningPower);
+        PlayerPrefs.SetFloat("coin", MenuManager.GetInstance().Coin);
+        PlayerPrefs.SetFloat("level", MenuManager.GetInstance().Level);
+        PlayerPrefs.SetFloat("weaponrate", MenuManager.GetInstance().WeaponFireRate);
+        PlayerPrefs.SetFloat("weaponpower", MenuManager.GetInstance().WeaponPower);
+        PlayerPrefs.SetFloat("greenballscope", MenuManager.GetInstance().GreenBallScope);
+        PlayerPrefs.SetFloat("greenballpower", MenuManager.GetInstance().GreenBallPower);
+        PlayerPrefs.SetFloat("orangeshellscope", MenuManager.GetInstance().OrangeShellScope);
+        PlayerPrefs.SetFloat("orangeshellpower", MenuManager.GetInstance().OrangeShellPower);
+        PlayerPrefs.SetFloat("lightningscope", MenuManager.GetInstance().LightningScope);
+        PlayerPrefs.SetFloat("lightningpower", MenuManager.GetInstance().LightningPower);
         PlayerPrefs.Save();
     }
 
@@ -54,31 +56,31 @@ public class SaveManager : MonoBehaviour {
                 MenuManager.GetInstance().AddCoin(data);
                 break;
             case "level":
-                MenuManager.GetInstance().level = data;
+                MenuManager.GetInstance().Level = data;
                 break;
             case "weaponrate":
-                MenuManager.GetInstance().weaponFireRate = data;
+                MenuManager.GetInstance().WeaponFireRate = data;
                 break;
             case "weaponpower":
-                MenuManager.GetInstance().weaponPower = data;
+                MenuManager.GetInstance().WeaponPower = data;
                 break;
             case "greenballscope":
-                MenuManager.GetInstance().greenBallScope = data;
+                MenuManager.GetInstance().GreenBallScope = data;
                 break;
             case "greenballpower":
-                MenuManager.GetInstance().greenBallPower = data;
+                MenuManager.GetInstance().GreenBallPower = data;
                 break;
             case "orangeshellscope":
-                MenuManager.GetInstance().orangeShellScope = data;
+                MenuManager.GetInstance().OrangeShellScope = data;
                 break;
             case "orangeshellpower":
-                MenuManager.GetInstance().orangeShellPower = data;
+                MenuManager.GetInstance().OrangeShellPower = data;
                 break;
             case "lightningscope":
-                MenuManager.GetInstance().lightningScope = data;
+                MenuManager.GetInstance().LightningScope = data;
                 break;
             case "lightningpower":
-                MenuManager.GetInstance().lightningPower = data;
+                MenuManager.GetInstance().LightningPower = data;
                 break;
         }
     }

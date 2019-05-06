@@ -10,35 +10,175 @@ public class MenuManager
         Lightning
     }
 
-    public float coin = 100;
     static MenuManager instance;
 
-    public float level = 1;
+    float coin = 100;
 
-    public float weaponFireRate = 1;
-    public float weaponPower = 1;
-    public float greenBallScope = 1;
-    public float greenBallPower = 1;
-    public float orangeShellScope = 1;
-    public float orangeShellPower = 1;
-    public float lightningScope = 1;
-    public float lightningPower = 1;
+    public float Coin
+    {
+        set{
+            coin = value;
+            SaveManager.SaveData();
+        }
+        get
+        {
+            return coin;
+        }
+    }
+
+    float level = 1;
+
+    public float Level
+    {
+        set{
+            level = value;
+            SaveManager.SaveData();
+        }
+        get
+        {
+            return level;
+        }
+    }
+
+    float weaponFireRate = 1;
+
+    public float WeaponFireRate
+    {
+        set{
+            weaponFireRate = value;
+            SaveManager.SaveData();
+        }
+        get
+        {
+            return weaponFireRate;
+        }
+    }
+
+    float weaponPower = 1;
+
+    public float WeaponPower
+    {
+        set
+        {
+            weaponPower = value;
+            SaveManager.SaveData();
+        }
+        get
+        {
+            return weaponPower;
+        }
+    }
+
+    float greenBallScope = 1;
+
+    public float GreenBallScope
+    {
+        set
+        {
+            greenBallScope = value;
+            SaveManager.SaveData();
+        }
+        get
+        {
+            return greenBallScope;
+        }
+    }
+
+    float greenBallPower = 1;
+
+    public float GreenBallPower
+    {
+        set
+        {
+            greenBallPower = value;
+            SaveManager.SaveData();
+        }
+        get
+        {
+            return greenBallPower;
+        }
+    }
+
+    float orangeShellScope = 1;
+
+    public float OrangeShellScope
+    {
+        set
+        {
+            orangeShellScope = value;
+            SaveManager.SaveData();
+        }
+        get
+        {
+            return orangeShellScope;
+        }
+    }
+
+    float orangeShellPower = 1;
+
+    public float OrangeShellPower
+    {
+        set
+        {
+            orangeShellPower = value;
+            SaveManager.SaveData();
+        }
+        get
+        {
+            return orangeShellPower;
+        }
+    }
+
+    float lightningScope = 1;
+
+    public float LightningScope
+    {
+        set
+        {
+            lightningScope = value;
+            SaveManager.SaveData();
+        }
+        get
+        {
+            return lightningScope;
+        }
+    }
+
+    float lightningPower = 1;
+
+    public float LightningPower
+    {
+        set
+        {
+            lightningPower = value;
+            SaveManager.SaveData();
+        }
+        get
+        {
+            return lightningPower;
+        }
+    }
+
     public SubWeapon currentSubWeapon = SubWeapon.GreenBall;
 
-    public static MenuManager GetInstance(){
-        if(instance == null){
+    public static MenuManager GetInstance()
+    {
+        if (instance == null)
+        {
             instance = new MenuManager();
         }
         return instance;
     }
 
-    MenuManager(){
+    MenuManager()
+    {
         UpdateUI();
     }
 
     public void UpdateUI()
     {
-        if(SceneManager.GetActiveScene().name != "Menu"){
+        if (SceneManager.GetActiveScene().name != "Menu")
+        {
             return;
         }
         Text coinText = GameObject.Find("CoinText").GetComponent<Text>();
@@ -49,30 +189,31 @@ public class MenuManager
         Text subWeaponScopeLvUpText = root.transform.Find("SubPanel/StrenghtLayout/Text").gameObject.GetComponent<Text>();
         Text subWeaponPowerLvUpText = root.transform.Find("SubPanel/SubPowerLayout/Text").gameObject.GetComponent<Text>();
 
-        coinText.text = "Coin:" + coin;
+        coinText.text = "Coin:" + Coin;
         levelText.text = "Level : " + level;
         if (weaponFireRateText.enabled)
         {
-            weaponFireRateText.text = "射速(Lv" + weaponFireRate + ")";
+            weaponFireRateText.text = "射速(Lv" + WeaponFireRate + ")";
         }
         if (weaponPowerText.enabled)
         {
-            weaponPowerText.text = "火力(Lv" + weaponPower + ")";
+            weaponPowerText.text = "火力(Lv" + WeaponPower + ")";
         }
         float subScope = 1;
         float subPower = 1;
-        switch(currentSubWeapon){
+        switch (currentSubWeapon)
+        {
             case SubWeapon.GreenBall:
-                subScope = greenBallScope;
-                subPower = greenBallPower;
+                subScope = GreenBallScope;
+                subPower = GreenBallPower;
                 break;
             case SubWeapon.OrangeShell:
-                subScope = orangeShellScope;
-                subPower = orangeShellPower;
+                subScope = OrangeShellScope;
+                subPower = OrangeShellPower;
                 break;
             case SubWeapon.Lightning:
-                subScope = lightningScope;
-                subPower = lightningPower;
+                subScope = LightningScope;
+                subPower = LightningPower;
                 break;
         }
         if (subWeaponScopeLvUpText.enabled)
@@ -87,55 +228,65 @@ public class MenuManager
 
     public void AddCoin(float value)
     {
-        coin += value;
+        Coin += value;
         UpdateUI();
     }
 
-    public void AddLevel(){
-        level++;
+    public void AddLevel()
+    {
+        Level++;
     }
 
-    public void SubCoin(int value){
-        if((coin-value) >= 0){
-            coin -= value;
+    public void SubCoin(int value)
+    {
+        if ((Coin - value) >= 0)
+        {
+            Coin -= value;
             UpdateUI();
-        }else{
+        }
+        else
+        {
             Debug.Log("Coin lacking");
         }
     }
 
-    public void GameStart(){
+    public void GameStart()
+    {
         SceneManager.LoadScene("Game");
     }
-    
-    public void LvUpWeaponFireRate(){
-        if(coin >= 10){
-            weaponFireRate++;
+
+    public void LvUpWeaponFireRate()
+    {
+        if (Coin >= 10)
+        {
+            WeaponFireRate++;
             SubCoin(10);
         }
     }
 
-    public void LvUpWeaponPower(){
-        if (coin >= 10)
+    public void LvUpWeaponPower()
+    {
+        if (Coin >= 10)
         {
-            weaponPower++;
+            WeaponPower++;
             SubCoin(10);
         }
     }
 
     public void LvUpSubWeaponScope()
     {
-        if (coin >= 10)
+        if (Coin >= 10)
         {
-            switch(currentSubWeapon){
+            switch (currentSubWeapon)
+            {
                 case SubWeapon.GreenBall:
-                    greenBallScope++;
+                    GreenBallScope++;
                     break;
                 case SubWeapon.OrangeShell:
-                    orangeShellScope++;
+                    OrangeShellScope++;
                     break;
                 case SubWeapon.Lightning:
-                    lightningScope++;
+                    LightningScope++;
                     break;
             }
             SubCoin(10);
@@ -144,18 +295,18 @@ public class MenuManager
 
     public void LvUpSubWeaponPower()
     {
-        if (coin >= 10)
+        if (Coin >= 10)
         {
             switch (currentSubWeapon)
             {
                 case SubWeapon.GreenBall:
-                    greenBallPower++;
+                    GreenBallPower++;
                     break;
                 case SubWeapon.OrangeShell:
-                    orangeShellPower++;
+                    OrangeShellPower++;
                     break;
                 case SubWeapon.Lightning:
-                    lightningPower++;
+                    LightningPower++;
                     break;
             }
             SubCoin(10);

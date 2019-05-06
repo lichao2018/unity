@@ -35,8 +35,8 @@ public class SubWeaponController : MonoBehaviour {
             {
                 if (MenuManager.GetInstance().currentSubWeapon == MenuManager.SubWeapon.Lightning)
                 {
-                    scope = MenuManager.GetInstance().lightningScope;
-                    power = MenuManager.GetInstance().lightningPower;
+                    scope = MenuManager.GetInstance().LightningScope;
+                    power = MenuManager.GetInstance().LightningPower;
                     GameObject player = GameObject.Find("Player");
                     Vector3 position = player.transform.position;
                     position.z += 8;
@@ -55,12 +55,12 @@ public class SubWeaponController : MonoBehaviour {
                     switch (MenuManager.GetInstance().currentSubWeapon)
                     {
                         case MenuManager.SubWeapon.GreenBall:
-                            scope = MenuManager.GetInstance().greenBallScope;
-                            power = MenuManager.GetInstance().greenBallPower;
+                            scope = MenuManager.GetInstance().GreenBallScope;
+                            power = MenuManager.GetInstance().GreenBallPower;
                             break;
                         case MenuManager.SubWeapon.OrangeShell:
-                            scope = MenuManager.GetInstance().orangeShellScope;
-                            power = MenuManager.GetInstance().orangeShellPower;
+                            scope = MenuManager.GetInstance().OrangeShellScope;
+                            power = MenuManager.GetInstance().OrangeShellPower;
                             break;
                     }
                     bullet.transform.localScale = new Vector3(

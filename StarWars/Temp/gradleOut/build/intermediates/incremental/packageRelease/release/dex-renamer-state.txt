@@ -1,4 +1,0 @@
-#Wed Apr 24 21:29:51 CST 2019
-base.0=/Users/lichao/github/unity/StarWars/Temp/gradleOut/build/intermediates/transforms/dex/release/0
-path.0=classes.dex
-renamed.0=classes.dex

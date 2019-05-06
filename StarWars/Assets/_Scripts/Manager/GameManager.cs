@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
         enemyMeteoritePrefab = (GameObject)Resources.Load("Meteorite");
         enemyShipPrefab = (GameObject)Resources.Load("EnemyShip");
 
-        level = MenuManager.GetInstance().level;
+        level = MenuManager.GetInstance().Level;
         coin = 0;
         UpdateCoin();
         gameOver = true;
