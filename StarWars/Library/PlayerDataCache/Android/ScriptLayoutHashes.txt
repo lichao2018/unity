@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-/Users/lichao/github/unity/StarWars/StarWars.apk
+/Users/lichao/github/unity/unity/StarWars/StarWars.apk
 SceneListBegin?
 Assets/_Scenes/Menu.unity
 Assets/_Scenes/Game.unity
