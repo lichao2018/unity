@@ -6,6 +6,7 @@ public class Ctrl : MonoBehaviour
 {
     Rigidbody2D rig;
     Animator animator;
+    bool towardsRight = true;
 
     public float jumpForce = 300;
     public float moveSpeed = 5.5f;
@@ -20,35 +21,64 @@ public class Ctrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveCtrl();
+        if(AttackCtrl()){
+            MoveCtrl(true);
+            return;
+        }
+        MoveCtrl(false);
     }
 
-    void MoveCtrl(){
+    void MoveCtrl(bool stopMove){
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rig.AddForce(new Vector2(0, jumpForce));
+        }
+        if (stopMove){
+            rig.velocity = new Vector2(0, rig.velocity.y);
+            return;
         }
         float horizontal = Input.GetAxis("Horizontal") * moveSpeed;
         rig.velocity = new Vector2(horizontal, rig.velocity.y);
 
         if (horizontal > 0.01f)
         {
-            animator.SetBool("walking_r", true);
-            animator.SetBool("walking_l", false);
+            towardsRight = true;
+            MoveAnimator(false, true);
         }
         else if (horizontal < -0.01f)
         {
-            animator.SetBool("walking_r", false);
-            animator.SetBool("walking_l", true);
+            towardsRight = false;
+            MoveAnimator(true, false);
         }
         else
         {
-            animator.SetBool("walking_l", false);
-            animator.SetBool("walking_r", false);
+            MoveAnimator(false, false);
         }
     }
 
-    void AttackCtrl(){
+    void MoveAnimator(bool left, bool right){
+        animator.SetBool("walking_l", left);
+        animator.SetBool("walking_r", right);
+    }
 
+    bool AttackCtrl(){
+        //如果攻击结束，则显示idle动画
+        if(!animator.GetCurrentAnimatorStateInfo(0).IsName("playerAttackLeft") 
+           && !animator.GetCurrentAnimatorStateInfo(0).IsName("playerAttackRight"))
+        {
+            Attack(false);
+        }else{
+            return true;
+        }
+        if(Input.GetKeyDown(KeyCode.J)){
+            Attack(true);
+            return true;
+        }
+        return false;
+    }
+
+    void Attack(bool attack){
+        MoveAnimator(false, false);
+        animator.SetBool(towardsRight ? "attack_r" : "attack_l", attack);
     }
 }
