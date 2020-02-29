@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\AI.cs" />
+    <Compile Include="Assets\Script\AttackCollider.cs" />
     <Compile Include="Assets\Script\Ctrl.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/Users/lichao/github/unity/unity/2drpg/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

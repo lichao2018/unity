@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{356725F9-00DD-1C63-4698-9DEDA6509B27}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/AI.cs">
     <Files>
-      <File FileName="Assets/Script/Ctrl.cs" Line="31" Column="34" />
-      <File FileName="Assets/Script/AI.cs" Line="16" Column="9" />
+      <File FileName="Assets/Script/Ctrl.cs" Line="82" Column="45" />
+      <File FileName="Assets/Script/AI.cs" Line="29" Column="51" />
+      <File FileName="Assets/Script/AttackCollider.cs" Line="23" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
